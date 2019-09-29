@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+用户名:<input type="text" id="user-name-label">
+邮箱:<input type="email" id="user-email-label">
+<textarea rows="10" cols="50"></textarea>
+<button>获取数据</button>
+</body>
+
+<script>
+$("button").click(function () {
+    $.ajax({
+        url:"user/select",
+        type:"post",
+        data:"uid=2",
+        dataType:"json",
+        success:function (data) {
+            alert("hello")
+            $("#user-name-label").val(data.username);
+            $("#user-email-label").val(data.email);
+            $("textarea").val(JSON.stringify(data));
+        }
+    });
+});
+
+</script>
+</html>
